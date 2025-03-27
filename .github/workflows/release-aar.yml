@@ -50,7 +50,10 @@ jobs:
             echo "❌ No AAR file found."
             exit 1
           fi
-          VERSION=${GITHUB_REF#refs/tags/}
+
+          RAW_REF=${GITHUB_REF##*/}
+          VERSION=$(echo "$RAW_REF" | tr '/' '-')  # replaces slashes with hyphens
+
           RENAMED_FILE="koopus-$VERSION.aar"
           cp "$AAR_FILE" "$RENAMED_FILE"
           echo "aar=$RENAMED_FILE" >> $GITHUB_OUTPUT
