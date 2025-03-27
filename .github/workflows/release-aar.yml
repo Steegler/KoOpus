@@ -59,10 +59,11 @@ jobs:
           echo "aar=$RENAMED_FILE" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
           name: "KoOpus ${{ github.ref_name }}"
-          tag_name: ${{ github.ref }}
+          tag_name: ${{ github.ref_name }}
           files: ${{ steps.locate.outputs.aar }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
