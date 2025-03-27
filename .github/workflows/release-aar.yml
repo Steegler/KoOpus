@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'v*'  # Triggers on version tags like v0.1.0
+  workflow_dispatch:
 
 jobs:
   build:
@@ -24,18 +25,26 @@ jobs:
         uses: gradle/gradle-build-action@v2
 
       - name: Build AAR
-        run: ./gradlew :library:assembleRelease
+        run: ./gradlew :library:assembleRelease --no-daemon --stacktrace
 
-      - name: Locate AAR
+      - name: Locate and Rename AAR
         id: locate
         run: |
-          echo "AAR_PATH=$(find library/build/outputs/aar -name '*.aar' | head -n 1)" >> $GITHUB_ENV
+          AAR_FILE=$(find library/build/outputs/aar -name '*release.aar' | head -n 1)
+          if [ -z "$AAR_FILE" ]; then
+            echo "❌ No AAR file found."
+            exit 1
+          fi
+          VERSION=${GITHUB_REF#refs/tags/}
+          RENAMED_FILE="koopus-$VERSION.aar"
+          cp "$AAR_FILE" "$RENAMED_FILE"
+          echo "aar=$RENAMED_FILE" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           name: "KoOpus ${{ github.ref_name }}"
           tag_name: ${{ github.ref }}
-          files: ${{ env.AAR_PATH }}
+          files: ${{ steps.locate.outputs.aar }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
