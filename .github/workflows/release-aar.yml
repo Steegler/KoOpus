@@ -24,6 +24,12 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
 
+      - name: Run autogen.sh for Opus
+        working-directory: opus
+        run: |
+          chmod +x autogen.sh
+          ./autogen.sh
+
       - name: Build Opus for Android ABIs
         run: |
           chmod +x ./build_opus_android.sh
