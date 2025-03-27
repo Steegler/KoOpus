@@ -1,0 +1,2 @@
+ninja: Entering directory `/Users/argiad/Projects/_STEEGLER/KoOpus/KoOpus/library/.cxx/Debug/3l3l5a1q/arm64-v8a'
+ninja: no work to do.

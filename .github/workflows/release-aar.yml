@@ -1,0 +1,41 @@
+name: Build & Release AAR
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggers on version tags like v0.1.0
+
+jobs:
+  build:
+    name: Build AAR
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Build AAR
+        run: ./gradlew :library:assembleRelease
+
+      - name: Locate AAR
+        id: locate
+        run: |
+          echo "AAR_PATH=$(find library/build/outputs/aar -name '*.aar' | head -n 1)" >> $GITHUB_ENV
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: "KoOpus ${{ github.ref_name }}"
+          tag_name: ${{ github.ref }}
+          files: ${{ env.AAR_PATH }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

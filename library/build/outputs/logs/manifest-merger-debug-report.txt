@@ -1,0 +1,16 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/argiad/Projects/_STEEGLER/KoOpus/KoOpus/library/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2981369895892202251.xml:2:13-83
+INJECTED from /Users/argiad/Projects/_STEEGLER/KoOpus/KoOpus/library/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2981369895892202251.xml:2:13-83
+	package
+		INJECTED from /Users/argiad/Projects/_STEEGLER/KoOpus/KoOpus/library/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2981369895892202251.xml
+	xmlns:android
+		ADDED from /Users/argiad/Projects/_STEEGLER/KoOpus/KoOpus/library/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2981369895892202251.xml:2:23-81
+uses-sdk
+INJECTED from /Users/argiad/Projects/_STEEGLER/KoOpus/KoOpus/library/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2981369895892202251.xml reason: use-sdk injection requested
+INJECTED from /Users/argiad/Projects/_STEEGLER/KoOpus/KoOpus/library/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2981369895892202251.xml
+INJECTED from /Users/argiad/Projects/_STEEGLER/KoOpus/KoOpus/library/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2981369895892202251.xml
+	android:targetSdkVersion
+		INJECTED from /Users/argiad/Projects/_STEEGLER/KoOpus/KoOpus/library/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2981369895892202251.xml
+	android:minSdkVersion
+		INJECTED from /Users/argiad/Projects/_STEEGLER/KoOpus/KoOpus/library/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2981369895892202251.xml

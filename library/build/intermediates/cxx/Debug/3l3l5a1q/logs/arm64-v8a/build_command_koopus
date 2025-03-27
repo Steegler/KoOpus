@@ -1,0 +1,4 @@
+/Users/argiad/Library/Android/sdk/cmake/3.22.1/bin/ninja \
+  -C \
+  /Users/argiad/Projects/_STEEGLER/KoOpus/KoOpus/library/.cxx/Debug/3l3l5a1q/arm64-v8a \
+  koopus

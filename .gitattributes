@@ -1,0 +1,31 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Kotlin source files
+*.kt text diff=kt
+*.kts text
+
+# C/C++ source files
+*.c text
+*.cpp text
+*.h text
+
+# Shell scripts
+*.sh text eol=lf
+
+# Binary files
+*.a binary
+*.so binary
+
+# Ignore archive diffs
+*.zip binary
+*.jar binary
+*.apk binary
+
+# Markdown and text
+*.md text
+*.txt text
+
+# Normalize Gradle files
+*.gradle text
+*.gradle.kts text

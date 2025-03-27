@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.steegler.koopusdemo-mergeDebugResources-44:/values-v30/values-v30.xml",
+            "map": [
+                {
+                    "source": "/Users/argiad/.gradle/caches/8.11.1/transforms/68c85dc2c16157f0a257a297cc3cc447/transformed/jetified-material3-release/res/values-v30/values-v30.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "72",
+                        "endOffsets": "123"
+                    }
+                }
+            ]
+        }
+    ]
+}

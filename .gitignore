@@ -1,0 +1,50 @@
+# === General Android ===
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build/
+/captures/
+/externalNativeBuild/
+.cxx/
+*.iml
+*.apk
+*.ap_
+
+# === Kotlin ===
+*.class
+*.kt~
+*.kts~
+
+# === Native (NDK / CMake) ===
+/library/src/main/cpp/prebuilt/*/libopus.a
+/library/src/main/cpp/obj/
+/build_opus/
+*.o
+*.so
+
+# === Logs & Temp ===
+*.log
+*.tmp
+*.swp
+
+# === OS ===
+Thumbs.db
+.DS_Store
+ehthumbs.db
+Icon?
+
+# === Test Reports ===
+/test-results/
+/reports/
+
+# === Gradle Wrapper ===
+!gradlew
+!gradlew.bat
+/gradle/wrapper/gradle-wrapper.jar
+/.idea/
