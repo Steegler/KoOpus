@@ -3,7 +3,7 @@
 
 # Kotlin source files
 *.kt text diff=kt
-*.kts text
+*.kts text eol=lf
 
 # C/C++ source files
 *.c text
@@ -27,5 +27,5 @@
 *.txt text
 
 # Normalize Gradle files
-*.gradle text
-*.gradle.kts text
+gradlew text eol=lf
+*.gradle text eol=lf

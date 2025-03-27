@@ -46,5 +46,5 @@ Icon?
 # === Gradle Wrapper ===
 !gradlew
 !gradlew.bat
-/gradle/wrapper/gradle-wrapper.jar
+!/gradle/wrapper/gradle-wrapper.jar
 /.idea/
