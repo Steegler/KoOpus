@@ -24,6 +24,10 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
 
+      - name: Clone Opus source
+        run: |
+          git clone https://gitlab.xiph.org/xiph/opus.git
+
       - name: Run autogen.sh for Opus
         working-directory: opus
         run: |
