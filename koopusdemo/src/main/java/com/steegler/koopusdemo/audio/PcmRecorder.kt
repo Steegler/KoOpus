@@ -29,6 +29,9 @@ class PcmRecorder(
         }
         OpusTuning(OpusEncoder).apply { opusProfile }
 
+        // clear chunks if exist
+        encodedChunks.clear()
+
         val channelConfig = if (channels == 1)
             AudioFormat.CHANNEL_IN_MONO else AudioFormat.CHANNEL_IN_STEREO
 
