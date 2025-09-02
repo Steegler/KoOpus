@@ -6,6 +6,9 @@ import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.util.Log
+import com.steegler.koopus.OpusProfile
+import com.steegler.koopus.OpusProfiles
+import com.steegler.koopus.OpusTuning
 import java.util.concurrent.atomic.AtomicBoolean
 
 class PcmRecorder(
@@ -19,11 +22,12 @@ class PcmRecorder(
     val encodedChunks = mutableListOf<ByteArray>()
 
     @SuppressLint("MissingPermission")
-    fun start() {
+    fun start(opusProfile: OpusProfile = OpusProfiles.Default) {
         if (!OpusEncoder.create(sampleRate, channels, application)) {
             Log.e("PcmRecorder", "Failed to create Opus encoder")
             return
         }
+        OpusTuning(OpusEncoder).apply { opusProfile }
 
         val channelConfig = if (channels == 1)
             AudioFormat.CHANNEL_IN_MONO else AudioFormat.CHANNEL_IN_STEREO

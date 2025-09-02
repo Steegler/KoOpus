@@ -31,4 +31,6 @@ object OpusDecoder {
     private external fun nativeCreateDecoder(sampleRate: Int, channels: Int): Long
     private external fun nativeDecode(handle: Long, input: ByteArray, inputLen: Int, output: ShortArray, frameSize: Int): Int
     private external fun nativeDestroyDecoder(handle: Long)
+    external fun decodeAggregated(payload: ByteArray, length: Int, maxFrameSize: Int, outPcm: ShortArray): Int
+    external fun reset()
 }

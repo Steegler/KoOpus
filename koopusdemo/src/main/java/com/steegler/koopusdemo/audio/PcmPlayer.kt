@@ -7,6 +7,10 @@ import android.media.AudioManager
 import android.media.AudioTrack
 import android.util.Log
 import com.steegler.koopus.OpusDecoder
+import com.steegler.koopus.OpusProfile
+import com.steegler.koopus.OpusProfiles
+import com.steegler.koopus.OpusTuning
+import com.steegler.koopus.apply
 import java.util.concurrent.atomic.AtomicBoolean
 
 class PcmPlayer(
@@ -18,11 +22,12 @@ class PcmPlayer(
     private val isPlaying = AtomicBoolean(false)
 
     @SuppressLint("NewApi")
-    fun play(encodedChunks: List<ByteArray>) {
+    fun play(encodedChunks: List<ByteArray>, opusProfile: OpusProfile = OpusProfiles.Default) {
         if (!OpusDecoder.create(sampleRate, channels)) {
             Log.e("PcmPlayer", "Failed to create Opus decoder")
             return
         }
+        OpusTuning(OpusDecoder).apply{ opusProfile }
 
         val channelOut = if (channels == 1)
             AudioFormat.CHANNEL_OUT_MONO else AudioFormat.CHANNEL_OUT_STEREO
@@ -36,7 +41,7 @@ class PcmPlayer(
         audioTrack = AudioTrack.Builder()
             .setAudioAttributes(
                 AudioAttributes.Builder()
-                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
                     .setUsage(AudioAttributes.USAGE_MEDIA)
                     .build()
             )
