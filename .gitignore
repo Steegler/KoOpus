@@ -9,9 +9,13 @@
 /.idea/assetWizardSettings.xml
 .DS_Store
 /build/
+/build_opus/
 /captures/
 /externalNativeBuild/
 .cxx/
+/library/.cxx
+/library/build
+/koopusdemo/build
 *.iml
 *.apk
 *.ap_

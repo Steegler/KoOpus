@@ -14,6 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
+import com.steegler.koopus.OpusProfile
+import com.steegler.koopus.OpusProfiles
 import com.steegler.koopusdemo.audio.PcmPlayer
 import com.steegler.koopusdemo.audio.PcmRecorder
 import com.steegler.koopusdemo.ui.theme.KoOpusTheme
@@ -29,6 +31,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val context = this
             val audioPermissionGranted = remember { mutableStateOf(false) }
+            var selectedProfile by remember { mutableStateOf(OpusProfiles.Default) }
 
             val launcher = rememberLauncherForActivityResult(
                 contract = ActivityResultContracts.RequestPermission()
@@ -60,12 +63,27 @@ class MainActivity : ComponentActivity() {
                             Text("Welcome to KoOpus", style = MaterialTheme.typography.headlineMedium)
                             Spacer(modifier = Modifier.height(24.dp))
 
+                            Text("Select Opus Profile", style = MaterialTheme.typography.titleMedium)
+                            Spacer(Modifier.height(8.dp))
+
+                            ProfileList(
+                                profiles = listOf(
+                                    OpusProfiles.Default,
+                                    OpusProfiles.LowPower,
+                                    OpusProfiles.HighQuality
+                                ),
+                                onSelected = { profile ->
+                                    selectedProfile = profile
+                                }
+                            )
+
+                            Spacer(modifier = Modifier.height(24.dp))
                             var isRecording by remember { mutableStateOf(false) }
 
                             Button(
                                 onClick = {
                                     if (!isRecording) {
-                                        pcmRecorder.start()
+                                        pcmRecorder.start(opusProfile = selectedProfile)
                                     } else {
                                         pcmRecorder.stop()
                                     }
@@ -79,7 +97,7 @@ class MainActivity : ComponentActivity() {
 
                             Button(
                                 onClick = {
-                                    pcmPlayer.play(pcmRecorder.encodedChunks)
+                                    pcmPlayer.play(pcmRecorder.encodedChunks, opusProfile = selectedProfile)
                                 },
                                 enabled = !isRecording && pcmRecorder.encodedChunks.isNotEmpty()
                             ) {
@@ -95,6 +113,32 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Text("Microphone permission required")
                 }
+            }
+        }
+    }
+}
+
+@Composable
+fun ProfileList(
+    profiles: List<OpusProfile>,
+    onSelected: (OpusProfile) -> Unit
+) {
+    Column {
+        profiles.forEach { profile ->
+            Button(
+                onClick = { onSelected(profile) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp)
+            ) {
+                Text(
+                    when (profile) {
+                        OpusProfiles.Default -> "Default – WB 16k / 24 kbps"
+                        OpusProfiles.LowPower -> "Low Power – WB 16k / 16 kbps"
+                        OpusProfiles.HighQuality -> "High Quality – FB 48k / 32 kbps"
+                        else -> ""
+                    }
+                )
             }
         }
     }
