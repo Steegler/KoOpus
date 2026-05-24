@@ -29,3 +29,8 @@ target_link_libraries(
         opus
         log
 )
+
+# Required for Android 15+ (Pixel 9+, all OEM devices shipping with 16 KB pages
+# and Play Store uploads since 2025-11-01). NDK 27+ does this by default, but
+# the explicit flag keeps us safe across NDK version regressions.
+target_link_options(koopus PRIVATE "-Wl,-z,max-page-size=16384")

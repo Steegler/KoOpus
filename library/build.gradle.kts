@@ -31,7 +31,7 @@ android {
         prefab = true // optional
     }
 
-    ndkVersion = "25.1.8937393" // or match your installed version
+    ndkVersion = "27.0.11902837"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
